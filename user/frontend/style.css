@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap");
+:root{
+  --primary-color: #ee4d2d;
+  --secondary-color: #fe6233;
+  --tertiary-color: #eda500;
+  --white-color: #fff;
+  --black-color: #000;
+  --gray-color: #808080;
+  --light-gray-color: #f0f0f0;
+  --dark-gray-color: #333333;
+  --font-family: "Roboto", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-color: #fef6f5;
+}
+.hidden {
+  display: none;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  background-color: #ee4d2d;
+  padding: 0 2%;
+  border-bottom: 2px solid gray;
+}
+.left-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+.right-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+.logo {
+  height: inherit;
+  padding-right: 1rem;
+}
+.logo img {
+  height: 90%;
+}
+.login-status {
+  display: flex;
+  color: #fff;
+}
+.login-status * {
+  padding-right: 1rem;
+  margin: 0 10px;
+}
+.cart {
+  color: #fff;
+}
+.search-form {
+  display: flex;
+}
+input[type="search"],
+input[type="submit"] {
+  padding: 5px 15px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
+input[type="submit"] {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: #fff;
+}
+.navigation {
+  background-color: #fe6233;
+  height: 8vh;
+}
+.navigation ul {
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  list-style: none;
+}
+.navigation ul li {
+  padding: 0.5rem 2rem;
+  margin-left: 5rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  background-color: var(--primary-color);
+  border-radius: 1.5rem;
+}
