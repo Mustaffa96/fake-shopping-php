@@ -1,5 +1,5 @@
 #Rules file for Windsurf(just for debug)
-#winsurfrules
+.winsurfrules
 
 #Environment file for credentials
 .env
