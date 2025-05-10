@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/638f2512ef.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -28,7 +31,8 @@
                     <div class="login"><i class="fas fa-sign-in-alt fa-2x"></i></div>
                     <div class="register"><i class="fas fa-user-times fa-2x"></i></div>
                     <div class="logout"><i class="fas fa-sign-out-alt fa-2x"></i></div>
-                    <div class="logged-user "><i class="fas fa-user-check fa-2x"></i><span class="username">username</span>
+                    <div class="logged-user "><i class="fas fa-user-check fa-2x"></i><span
+                            class="username">username</span>
                     </div>
                 </div>
                 <div class="cart"><i class="fas fa-shopping-cart fa-2x"></i></div>
@@ -36,8 +40,56 @@
         </div>
         <div class="navigation"></div>
     </header>
-    <main></main>
-    <footer></footer>
+    <main>
+        <section class="banner">
+            <div class="swiper">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="social-share">
+            <ul>
+                <li><i class="fab fa-facebook fa-2x"></i></li>
+                <li><i class="fab fa-twitter fa-2x"></i></li>
+                <li><i class="fab fa-instagram fa-2x"></i></li>
+                <li><i class="fab fa-pinterest fa-2x"></i></li>
+                <li><i class="fab fa-youtube fa-2x"></i></li>
+            </ul>
+        </div>
+        <div class="general-info">
+            <div class="help">
+                <h3>help</h3>
+                <ul>
+                    <li>frequently asked questions</li>
+                    <li>delivery information</li>
+                    <li>arrange a return</li>
+                    <li>product recall</li>
+                    <li>customer services</li>
+                </ul>
+            </div>
+            <div class="store-location">
+                <h3>our location</h3>
+                <ul>
+                    <li>Singapore</li>
+                    <li>Malaysia</li>
+                    <li>Thailand</li>
+                    <li>Indonesia</li>
+                    <li>Vietnam</li>
+                </ul>
+            </div>
+            <div class="legal">
+                <h3>privacy & legal</h3>
+                <ul>
+                    <li>cookies & privacy policy</li>
+                    <li>terms & conditions</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <script src="global.js"></script>
 </body>
 

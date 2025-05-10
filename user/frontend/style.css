@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap");
-:root{
+:root {
   --primary-color: #ee4d2d;
   --secondary-color: #fe6233;
   --tertiary-color: #eda500;
@@ -21,6 +21,14 @@ body {
 }
 .hidden {
   display: none;
+}
+/* header section starts here */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 .heading {
   display: flex;
@@ -73,6 +81,7 @@ input[type="submit"] {
   background-color: var(--primary-color);
   color: #fff;
   border-color: #fff;
+  font-weight: 700;
 }
 .navigation {
   background-color: #fe6233;
@@ -95,3 +104,75 @@ input[type="submit"] {
   background-color: var(--primary-color);
   border-radius: 1.5rem;
 }
+/* header section ends here */
+/* main starts here */
+main {
+  min-height: 45vh;
+  margin-top: 16vh;
+}
+
+/* inside main - banner section starts */
+/* .swiper {
+  width: auto;
+  height: auto;
+} */
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2rem;
+  text-shadow: 2px 2px 3px var(--primary-color);
+}
+.swiper-slide * {
+  margin-bottom: 0.8rem;
+}
+.swiper-slide button{
+  background-color: var(--primary-color);
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border-color: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+}
+/* inside main - banner section ends */
+
+/* main ends here */
+/* footer section starts here */
+footer li {
+  transform: all 2s ease-in-out;
+}
+footer li:hover {
+  color: var(--primary-color);
+  font-size: larger;
+}
+.social-share ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.social-share ul li {
+  margin: 0.5% 1%;
+}
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #fbfbfb;
+  text-transform: capitalize;
+  padding: 0 2%;
+}
+.general-info h3 {
+  margin: 25px 0;
+}
+.general-info ul {
+  list-style: none;
+}
+.general-info ul li {
+  margin-bottom: 15px;
+}
+/* footer section ends here */
