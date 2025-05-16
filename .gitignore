@@ -5,10 +5,10 @@
 .env
 
 #Image files
-images/accesory
-images/baby
-images/banner
-images/boy
-images/girl
-images/men
-images/women
+images/accesory/
+images/baby/
+images/banner/
+images/boy/
+images/girl/
+images/men/
+images/women/
