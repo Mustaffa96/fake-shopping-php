@@ -3,3 +3,15 @@
 
 #Environment file for credentials
 .env
+
+#Image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.ico
+*.svg
+*.webp
+*.bmp
+*.tiff
+*.tif
