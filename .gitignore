@@ -5,13 +5,10 @@
 .env
 
 #Image files
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.ico
-*.svg
-*.webp
-*.bmp
-*.tiff
-*.tif
+images/accesory
+images/baby
+images/banner
+images/boy
+images/girl
+images/men
+images/women
