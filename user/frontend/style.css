@@ -52,7 +52,7 @@ h2 {
 .card-img img:hover {
   box-shadow: 0 0 20px 10px var(--primary-color);
 }
-.card-description{
+.card-description {
   padding-top: 25px;
   font-size: 1.2rem;
   text-transform: capitalize;
@@ -142,7 +142,7 @@ input[type="submit"] {
   font-weight: 700;
   font-size: 1.3rem;
   text-transform: capitalize;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
   border-radius: 1.5rem;
 }
 /* header section ends here */
@@ -181,6 +181,66 @@ main {
 }
 /* inside main - banner section ends */
 
+/* overlay starts */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.8;
+  z-index: 200;
+}
+.modal {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  /* right: 0; */
+  width: 50vw;
+  height: 50vh;
+  background-color: #fff;
+  /* opacity: 0.4; */
+  z-index: 300;
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 10px 20px;
+}
+.modal img {
+  max-height: 47vh;
+}
+.modal-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 1.5rem;
+}
+.modal-desc * {
+  margin-bottom: 25px;
+  border-bottom: solid 1px var(--primary-color);
+  width: 100%;
+  padding: 5px 0;
+}
+.modal-desc select{
+  border: none;
+  border-bottm: solid 1px var(--primary-color);
+}
+.add-to-cart {
+  background-color: var(--primary-color);
+  border: solid 1px var(--primary-color);
+  padding: 10px 10px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px lightgray;
+  border-radius: 5px;
+  font-size: large;
+}
+.modal-desc: first-child{
+  font-weight:700;
+}
+/* overlay ends */
 /* main ends here */
 /* footer section starts here */
 footer li {

@@ -4,11 +4,3 @@
 #Environment file for credentials
 .env
 
-#Image files
-images/accesory/
-images/baby/
-images/banner/
-images/boy/
-images/girl/
-images/men/
-images/women/
