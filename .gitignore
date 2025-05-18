@@ -4,3 +4,5 @@
 #Environment file for credentials
 .env
 
+# Ignore images directory
+images/
