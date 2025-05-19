@@ -2,6 +2,7 @@
 // document.addEventListener("DOMContentLoaded", requestBanners);
 // document.addEventListener("DOMContentLoaded", requestFeatured);
 // document.addEventListener("DOMContentLoaded", requestNewArrivals);
+document.addEventListener("DOMContentLoaded", checkLoginStatus);
 
 function populateCatalogue(products, catalogueParent) {
   if (products) {
@@ -37,10 +38,13 @@ function populateCatalogue(products, catalogueParent) {
 }
 
 // fetch request refactoring
-function fetchCall(resource, callback, method = "GET") {
+function fetchCall(resource, callback, method = "GET", data = undefined) {
   const url = "http://localhost:8080/user/backend/";
   fetch(url + resource, {
     method: method,
+    mode:'cors',
+    credentials: "include",
+    body: data,
   })
     .then((res) => res.json())
     .then((data) => {
@@ -49,20 +53,27 @@ function fetchCall(resource, callback, method = "GET") {
     .catch((err) => console.log(err));
 }
 
-function getProductDetails() {
-  // console.log("Product clicked", this);
+function displayOverlay(modal) {
   const main = document.querySelector("main");
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.addEventListener("click", removeOverlay);
+  main.appendChild(overlay);
+  const modalContainer = document.createElement("div");
+  modalContainer.className = "modal-container";
+  modalContainer.appendChild(modal);
+  main.appendChild(modalContainer);
+}
+
+function getProductDetails() {
+  console.log("Product clicked", this);
+  // const main = document.querySelector("main");
   fetchCall(`inventory.php?id=${this.id}`, responseInventory.bind(this));
   function responseInventory(data) {
     // console.log(data);
     const stock = +data.stock;
-    const overlay = document.createElement("div");
-    overlay.className = "overlay";
-    overlay.addEventListener("click", removeOverlay);
-    main.appendChild(overlay);
     const modal = document.createElement("div");
     modal.className = "modal";
-    main.appendChild(modal);
     const img = document.createElement("img");
     img.src = `http://localhost:8080/${this.image}`;
     modal.appendChild(img);
@@ -79,30 +90,29 @@ function getProductDetails() {
     price.textContent = `RM${this.price}`;
     modalDesc.appendChild(price);
     const stockDiv = document.createElement("div");
-  switch(true){
-    case stock>10:
-      stockDiv.textContent = "In Stock";
-      stockDiv.style.color = "green";
-      break;
-    case stock >0 && stock<= 10:
-      stockDiv.textContent = `only ${stock} left`;
-      stockDiv.style.color = "green";
-      break;
-    case stock == 0:
-      stockDiv.textContent = "Out of Stock";
-      stockDiv.style.color = "red";
-      break;
+    switch (true) {
+      case stock > 10:
+        stockDiv.textContent = "In Stock";
+        stockDiv.style.color = "green";
+        break;
+      case stock > 0 && stock <= 10:
+        stockDiv.textContent = `only ${stock} left`;
+        stockDiv.style.color = "green";
+        break;
+      case stock == 0:
+        stockDiv.textContent = "Out of Stock";
+        stockDiv.style.color = "red";
+        break;
       default:
-      stockDiv.textContent = "Not Sure";
-      break;
-  }
-  modalDesc.appendChild(stockDiv);
-    const select = document.createElement("select");
-    if(stock==0){
-      select.disabled = true;
+        stockDiv.textContent = "Not Sure";
+        break;
     }
-    else{
-      const counter=stock>10?10:stock;
+    modalDesc.appendChild(stockDiv);
+    const select = document.createElement("select");
+    if (stock == 0) {
+      select.disabled = true;
+    } else {
+      const counter = stock > 10 ? 10 : stock;
       for (let i = 1; i <= counter; i++) {
         const option = document.createElement("option");
         option.value = i;
@@ -115,17 +125,25 @@ function getProductDetails() {
     addToCart.className = "add-to-cart";
     addToCart.textContent = "Add to Cart";
     modalDesc.appendChild(addToCart);
+    displayOverlay(modal);
   }
 }
 
 function removeOverlay() {
-  const main = document.querySelector("main");
+  // const main = document.querySelector("main");
   const overlay = document.querySelector(".overlay");
-  const modal = document.querySelector(".modal");
+  const modalContainer = document.querySelector(".modal-container");
   if (overlay) {
     overlay.remove();
   }
-  if (modal) {
-    modal.remove();
+  if (modalContainer) {
+    modalContainer.remove();
+  }
+}
+
+function checkLoginStatus() {
+  fetchCall("login.php", responseUserLogin);
+  function responseUserLogin(data) {
+    console.log(data);
   }
 }

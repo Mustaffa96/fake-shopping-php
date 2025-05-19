@@ -1,6 +1,6 @@
 <?php
 require './include/db.php';
-header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Origin: *');
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     $stmt = "select * from product WHERE status = 1 order by added_on desc limit 3";

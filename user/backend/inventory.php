@@ -1,6 +1,6 @@
 <?php
 require './include/db.php';
-header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Origin: *');
 
 if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
     $stmt = "select stock from inventory WHERE product_id = ?";

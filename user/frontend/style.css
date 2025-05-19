@@ -193,7 +193,7 @@ main {
   opacity: 0.8;
   z-index: 200;
 }
-.modal {
+.modal-container {
   position: fixed;
   top: 25%;
   left: 25%;
@@ -204,6 +204,8 @@ main {
   /* opacity: 0.4; */
   z-index: 300;
   border-radius: 7px;
+}
+.modal {
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 10px 20px;
@@ -224,7 +226,7 @@ main {
   width: 100%;
   padding: 5px 0;
 }
-.modal-desc select{
+.modal-desc select {
   border: none;
   border-bottm: solid 1px var(--primary-color);
 }
@@ -237,8 +239,8 @@ main {
   border-radius: 5px;
   font-size: large;
 }
-.modal-desc: first-child{
-  font-weight:700;
+.modal-desc: first-child {
+  font-weight: 700;
 }
 /* overlay ends */
 /* main ends here */
@@ -277,3 +279,20 @@ footer li:hover {
   margin-bottom: 15px;
 }
 /* footer section ends here */
+
+/* login and registration form styling */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px;
+}
+
+.login-form * {
+  margin-top: 5px;
+  padding: 5px 3px;
+  font-size: large;
+}
+
+.login-form input[type="submit"]{
+  width: 100%;
+}
