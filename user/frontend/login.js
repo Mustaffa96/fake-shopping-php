@@ -5,6 +5,7 @@ const loggedUser = document.querySelector(".logged-user");
 
 login.addEventListener("click", userLogin);
 logout.addEventListener("click", userLogout);
+
 function userLogin(e) {
   e.preventDefault();
   const formDiv = document.createElement("div");
@@ -17,7 +18,7 @@ function userLogin(e) {
   const userName = document.createElement("input");
   userName.type = "text";
   userName.name = "username";
-  userName.placeholder = "username";
+  userName.placeholder = "user name";
 
   const password = document.createElement("input");
   password.type = "password";
@@ -26,7 +27,7 @@ function userLogin(e) {
 
   const submit = document.createElement("input");
   submit.type = "submit";
-  submit.name = "login";
+  submit.name = "Login";
   submit.addEventListener("click", userLoginRequest);
   loginForm.appendChild(userName);
   loginForm.appendChild(password);
@@ -53,8 +54,8 @@ function showHideIcon(icon, flag) {
 
 function displayLoggedUser(user) {
   removeOverlay();
-  const loggedUser = document.querySelector(".username");
-  loggedUser.textContent = user;
+  const loggedUserSpan = document.querySelector(".username");
+  loggedUserSpan.textContent = user;
   showHideIcon(login, true);
   showHideIcon(register, true);
   showHideIcon(logout, false);
@@ -62,14 +63,14 @@ function displayLoggedUser(user) {
 }
 
 function displayLoginRegisterIcons() {
-  showHideIcon(login, true);
+  showHideIcon(login, false);
   showHideIcon(register, false);
   showHideIcon(logout, true);
   showHideIcon(loggedUser, true);
 }
 
 function checkLoginStatus() {
-  fetchCall("login.php?=check_status", responseUserLogin);
+  fetchCall("login.php?q=check_status", responseUserLogin);
   function responseUserLogin(data) {
     data.user != "guest" && displayLoggedUser(data.user);
     data.user == "guest" && displayLoginRegisterIcons();

@@ -1,7 +1,7 @@
-// document.addEventListener("DOMContentLoaded", requestCategories);
-// document.addEventListener("DOMContentLoaded", requestBanners);
-// document.addEventListener("DOMContentLoaded", requestFeatured);
-// document.addEventListener("DOMContentLoaded", requestNewArrivals);
+document.addEventListener("DOMContentLoaded", requestCategories);
+document.addEventListener("DOMContentLoaded", requestBanners);
+document.addEventListener("DOMContentLoaded", requestFeatured);
+document.addEventListener("DOMContentLoaded", requestNewArrivals);
 document.addEventListener("DOMContentLoaded", checkLoginStatus);
 
 function populateCatalogue(products, catalogueParent) {
@@ -141,9 +141,9 @@ function removeOverlay() {
   }
 }
 
-function checkLoginStatus() {
-  fetchCall("login.php", responseUserLogin);
-  function responseUserLogin(data) {
-    console.log(data);
-  }
-}
+// function checkLoginStatus() {
+//   fetchCall("login.php", responseUserLogin);
+//   function responseUserLogin(data) {
+//     console.log(data);
+//   }
+// }
