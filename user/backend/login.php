@@ -1,24 +1,6 @@
 <?php
 require './include/db.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['q'])) {
-    if (isset($_SESSION['logged_user'])) {
-        echo json_encode(['user' => $_SESSION['logged_user']['name']]);
-    } else
-        echo json_encode(['user' => 'guest']);
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['logged_user'])) {
-    session_unset();
-    session_destroy();
-    echo json_encode(['logout' => true]);
-    exit();
-} else {
-    echo json_encode(['logout' => false]);
-    exit();
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -31,8 +13,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['logged_user']['name'] = $user_array['username'];
         $_SESSION['logged_user']['id'] = $user_array['id'];
         echo json_encode(['user' => $_SESSION['logged_user']['name']]);
-    } else
+    } else {
         echo json_encode(['error' => 'Invalid username or password']);
+    }
     $prep_stmt->close();
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['q'])) {
+    if (isset($_SESSION['logged_user'])) {
+        echo json_encode(['user' => $_SESSION['logged_user']['name']]);
+    } else {
+        echo json_encode(['user' => 'guest']);
+    }
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION['logged_user'])) {
+    session_unset();
+    session_destroy();
+    echo json_encode(['logout' => true]);
+    exit();
+} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    echo json_encode(['logout' => false]);
     exit();
 }
