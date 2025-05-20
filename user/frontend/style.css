@@ -281,18 +281,21 @@ footer li:hover {
 /* footer section ends here */
 
 /* login and registration form styling */
-.login-form {
+.login-form,
+.register-form {
   display: flex;
   flex-direction: column;
   margin: 10px 10px;
 }
 
-.login-form * {
+.login-form *,
+.register-form * {
   margin-top: 5px;
   padding: 5px 3px;
   font-size: large;
 }
 
-.login-form input[type="submit"]{
+.login-form input[type="submit"],
+.register-form input[type="submit"] {
   width: 100%;
 }
