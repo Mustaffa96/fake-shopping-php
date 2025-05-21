@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", requestBanners);
 document.addEventListener("DOMContentLoaded", requestFeatured);
 document.addEventListener("DOMContentLoaded", requestNewArrivals);
 document.addEventListener("DOMContentLoaded", checkLoginStatus);
+document.addEventListener("DOMContentLoaded", updateCart);
 
 function populateCatalogue(products, catalogueParent) {
   if (products) {
@@ -42,7 +43,7 @@ function fetchCall(resource, callback, method = "GET", data = undefined) {
   const url = "http://localhost:8080/user/backend/";
   fetch(url + resource, {
     method: method,
-    mode:'cors',
+    mode: "cors",
     credentials: "include",
     body: data,
   })
@@ -124,6 +125,15 @@ function getProductDetails() {
     const addToCart = document.createElement("button");
     addToCart.className = "add-to-cart";
     addToCart.textContent = "Add to Cart";
+    addToCart.addEventListener(
+      "click",
+      addProductToCart.bind({
+        id: this.id,
+        image: this.image,
+        price: this.price,
+        stock,
+      })
+    );
     modalDesc.appendChild(addToCart);
     displayOverlay(modal);
   }
@@ -140,6 +150,8 @@ function removeOverlay() {
     modalContainer.remove();
   }
 }
+
+
 
 // function checkLoginStatus() {
 //   fetchCall("login.php", responseUserLogin);
