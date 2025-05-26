@@ -20,3 +20,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         addToGuestUserCart();
     exit();
 }
+
+// update cart quantity
+if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
+    parse_str(file_get_contents('php://input'), $_PATCH);
+
+    if (isset($_SESSION['logged_user']))
+        updateLoggedUserCart($_PATCH);
+    else
+        updateGuestUserCart($_PATCH);
+    exit();
+}
+
+// delete specific product from the cart
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    parse_str(file_get_contents('php://input'), $_DELETE);
+
+    if (isset($_SESSION['logged_user']))
+        deleteLoggedUserCartProduct($_DELETE);
+    else
+        deleteGuestUserCartProduct($_DELETE);
+    exit();
+}

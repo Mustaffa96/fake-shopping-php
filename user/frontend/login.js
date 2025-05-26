@@ -74,6 +74,7 @@ function checkLoginStatus() {
   function responseUserLogin(data) {
     data.user != "guest" && displayLoggedUser(data.user);
     data.user == "guest" && displayLoginRegisterIcons();
+    console.log("Welcome" + " " + data.user);
   }
 }
 

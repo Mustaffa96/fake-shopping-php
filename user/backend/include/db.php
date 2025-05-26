@@ -1,8 +1,12 @@
 <?php
 header('Access-Control-Allow-Origin: http://127.0.0.1:5500');
 header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
 
-session_start(['cookie_samesite' => 'None', 'cookie_secure' => true]);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(['cookie_samesite' => 'None', 'cookie_secure' => true]);
+}
 // Load environment variables from .env file
 $envFile = __DIR__ . '/../../../.env';
 if (file_exists($envFile)) {

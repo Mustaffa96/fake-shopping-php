@@ -25,16 +25,24 @@ function addToGuestUserCart()
         $_SESSION['cart'][$id]['quantity'] += $quantity;
     }
     $price = getProdPrice($id);
-    $_SESSION['cart'][$id]['price'] = round(($price * $quantity));
+    $_SESSION['cart'][$id]['price'] = round(($price * $_SESSION['cart'][$id]['quantity']), 2);
     updateTotalCart();
     echo json_encode(['cart' => $_SESSION['cart']]);
+}
+
+// delete specific product from the cart
+function deleteGuestUserCartProduct($_DELETE){
+    $id=$_DELETE['id'];
+    unset($_SESSION['cart'][$id]);
+    updateTotalCart();
+    echo json_encode(['cart'=>$_SESSION['cart']]);
 }
 
 // helper function - calculates price * quantity per product
 function getProdPrice($id)
 {
     global $conn;
-    $stmt = "SELECT price FROM products WHERE id = '$id'";
+    $stmt = "SELECT price FROM product WHERE id = ?;";
     $prep_stmt = $conn->prepare($stmt);
     $prep_stmt->bind_param('i', $id);
     $prep_stmt->execute();
@@ -48,9 +56,24 @@ function getProdPrice($id)
 function updateTotalCart()
 {
     $total = 0.00;
-    foreach ($_SESSION['cart'] as $item) {
-        $total += $item['price'];
-        $total = round($total, 2);
+    foreach ($_SESSION['cart'] as $id => $item) {
+        if ($id !== 'total' && isset($item['price'])) {
+            $total += floatval($item['price']);
+        }
     }
+    $total = round($total, 2);
     $_SESSION['cart']['total'] = $total;
+}
+
+// updates product quantity in the cart
+function updateGuestUserCart($_PATCH)
+{
+    $id = $_PATCH['id'];
+    $quantity = $_PATCH['quantity'];
+    $_SESSION['cart'][$id]['quantity'] = $quantity;
+    $price = $quantity * getProdPrice($id);
+    $price = bcdiv($price, 1, 2); // round to 2 decimal places
+    $_SESSION['cart'][$id]['price'] = $price;
+    updateTotalCart();
+    echo json_encode(['cart' => $_SESSION['cart']]);
 }
