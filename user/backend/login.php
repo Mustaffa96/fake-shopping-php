@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user_array = $result->fetch_assoc()) {
         $_SESSION['logged_user']['name'] = $user_array['username'];
         $_SESSION['logged_user']['id'] = $user_array['id'];
+        unset($_SESSION['cart']);
         echo json_encode(['user' => $_SESSION['logged_user']['name']]);
     } else {
         echo json_encode(['error' => 'Invalid username or password']);

@@ -43,7 +43,9 @@ function userLoginRequest(e) {
   fetchCall("login.php", userLoginResponse, "POST", formData);
 
   function userLoginResponse(data) {
+    console.log(data);
     data.user && displayLoggedUser(data.user);
+    data.user && updateCart();
   }
 }
 
@@ -83,5 +85,6 @@ function userLogout() {
   function responseLogout(data) {
     console.log(data);
     data.logout && displayLoginRegisterIcons();
+    data && updateCart();
   }
 }
