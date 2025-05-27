@@ -243,7 +243,7 @@ main {
 }
 .modal-desc select {
   border: none;
-  border-bottm: solid 1px var(--primary-color);
+  border-bottom: solid 1px var(--primary-color);
 }
 .add-to-cart {
   background-color: var(--primary-color);
@@ -254,7 +254,7 @@ main {
   border-radius: 5px;
   font-size: large;
 }
-.modal-desc: first-child {
+.modal-desc:first-child {
   font-weight: 700;
 }
 /* overlay ends */
@@ -297,21 +297,24 @@ footer li:hover {
 
 /* login and registration form styling */
 .login-form,
-.register-form {
+.register-form,
+.address-form {
   display: flex;
   flex-direction: column;
   margin: 10px 10px;
 }
-
+/* login and registration form styling */
 .login-form *,
-.register-form * {
+.register-form *,
+.address-form * {
   margin-top: 5px;
   padding: 5px 3px;
   font-size: large;
 }
 
 .login-form input[type="submit"],
-.register-form input[type="submit"] {
+.register-form input[type="submit"],
+.address-form input[type="submit"] {
   width: 100%;
 }
 
@@ -360,7 +363,7 @@ footer li:hover {
   grid-template-columns: 1fr 1fr;
   column-gap: 40rem;
 }
-.nav-div button{
+.nav-div button {
   background-color: var(--primary-color);
   padding: 0.5rem 0;
   border-radius: 5px;

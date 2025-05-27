@@ -94,6 +94,7 @@ function getAllCartItems($cart_id)
 {
     global $conn;
     $cart_items = array();
+    $prod_array = array();
     $stmt = $conn->prepare('SELECT p.id, p.image, ci.quantity, truncate((p.price * ci.quantity), 2)  as price, i.stock FROM product p inner join cart_item ci on p.id=ci.prod_id AND ci.cart_id = ? inner join inventory i on p.id=i.product_id;');
     $stmt->bind_param("i", $cart_id);
     if ($stmt->execute()) {

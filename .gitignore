@@ -6,3 +6,6 @@
 
 # Ignore images directory
 images/
+
+# Ignore vendor files
+vendor/

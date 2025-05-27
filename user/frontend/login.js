@@ -74,9 +74,9 @@ function displayLoginRegisterIcons() {
 function checkLoginStatus() {
   fetchCall("login.php?q=check_status", responseUserLogin);
   function responseUserLogin(data) {
+    console.log(data);
     data.user != "guest" && displayLoggedUser(data.user);
     data.user == "guest" && displayLoginRegisterIcons();
-    console.log("Welcome" + " " + data.user);
   }
 }
 
