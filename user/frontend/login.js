@@ -10,10 +10,10 @@ function userLogin(e) {
   e.preventDefault();
   const formDiv = document.createElement("div");
   formDiv.className = "formDiv";
+  const loginForm = document.createElement("form");
   const h2 = document.createElement("h2");
   h2.textContent = "Login Form";
-  formDiv.appendChild(h2);
-  const loginForm = document.createElement("form");
+  loginForm.appendChild(h2);
   loginForm.className = "login-form";
   const userName = document.createElement("input");
   userName.type = "text";
@@ -56,8 +56,8 @@ function showHideIcon(icon, flag) {
 
 function displayLoggedUser(user) {
   removeOverlay();
-  const loggedUserSpan = document.querySelector(".username");
-  loggedUserSpan.textContent = user;
+  const loggedUser = document.querySelector(".username");
+  loggedUser.textContent = user;
   showHideIcon(login, true);
   showHideIcon(register, true);
   showHideIcon(logout, false);

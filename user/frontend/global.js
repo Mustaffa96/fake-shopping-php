@@ -4,38 +4,52 @@ document.addEventListener("DOMContentLoaded", requestFeatured);
 document.addEventListener("DOMContentLoaded", requestNewArrivals);
 document.addEventListener("DOMContentLoaded", checkLoginStatus);
 document.addEventListener("DOMContentLoaded", updateCart);
+document.addEventListener("DOMContentLoaded", showWelcomeModal);
+document.addEventListener("DOMContentLoaded", initializeSearch);
 
 function populateCatalogue(products, catalogueParent) {
-  if (products) {
-    // const featuredSection = document.querySelector(".featured-products");
-    const catalogue = document.createElement("div");
-    catalogue.className = "catalogue";
+  if (!products) return;
 
-    products.forEach((prod) => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.addEventListener("click", getProductDetails.bind(prod));
-      const imgDiv = document.createElement("div");
-      imgDiv.className = "card-img";
-      const descDiv = document.createElement("div");
-      descDiv.className = "card-description";
-      card.appendChild(imgDiv);
-      card.appendChild(descDiv);
-      const img = document.createElement("img");
-      img.src = `http://localhost:8080/${prod.image}`;
-      imgDiv.appendChild(img);
-      const nameP = document.createElement("p");
-      nameP.className = "product-name";
-      nameP.textContent = prod.name;
-      const priceP = document.createElement("p");
-      priceP.className = "product-price";
-      priceP.textContent = `Price: RM${prod.price}`;
-      descDiv.appendChild(nameP);
-      descDiv.appendChild(priceP);
-      catalogue.appendChild(card);
-    });
-    catalogueParent.appendChild(catalogue);
-  }
+  const catalogue = document.createElement("div");
+  catalogue.className = "catalogue";
+
+  products.forEach((prod) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.addEventListener("click", getProductDetails.bind(prod));
+
+    // Create card image container
+    const imgDiv = document.createElement("div");
+    imgDiv.className = "card-img";
+    const img = document.createElement("img");
+    img.src = `http://localhost:8080/${prod.image}`;
+    img.alt = prod.name;
+    img.loading = "lazy"; // Add lazy loading for better performance
+    imgDiv.appendChild(img);
+
+    // Create card description container
+    const descDiv = document.createElement("div");
+    descDiv.className = "card-description";
+
+    // Add product name
+    const nameP = document.createElement("p");
+    nameP.className = "product-name";
+    nameP.textContent = prod.name;
+
+    // Add product price
+    const priceP = document.createElement("p");
+    priceP.className = "product-price";
+    priceP.textContent = `RM ${parseFloat(prod.price).toFixed(2)}`;
+
+    // Assemble the card
+    descDiv.appendChild(nameP);
+    descDiv.appendChild(priceP);
+    card.appendChild(imgDiv);
+    card.appendChild(descDiv);
+    catalogue.appendChild(card);
+  });
+
+  catalogueParent.appendChild(catalogue);
 }
 
 // fetch request refactoring
@@ -151,7 +165,32 @@ function removeOverlay() {
   }
 }
 
+function showWelcomeModal() {
+  const modal = document.createElement("div");
+  modal.className = "modal welcome-modal";
 
+  const modalContent = document.createElement("div");
+  modalContent.className = "welcome-content";
+
+  const title = document.createElement("h2");
+  title.textContent = "Welcome to My Fake Shopping Online!";
+
+  const message = document.createElement("p");
+  message.innerHTML =
+    "This is my personal project built with vanilla PHP & JavaScript. Please don't use your real email or password, including the payment information as this is a demo site. Feel free to explore and have fun!. For more projects, <a href='https://github.com/Mustaffa96' target='_blank' style='color: var(--primary-color); text-decoration: underline;'>visit my GitHub</a>";
+
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Got it!";
+  closeButton.className = "welcome-close-btn";
+  closeButton.onclick = removeOverlay;
+
+  modalContent.appendChild(title);
+  modalContent.appendChild(message);
+  modalContent.appendChild(closeButton);
+  modal.appendChild(modalContent);
+
+  displayOverlay(modal);
+}
 
 // function checkLoginStatus() {
 //   fetchCall("login.php", responseUserLogin);
@@ -159,3 +198,43 @@ function removeOverlay() {
 //     console.log(data);
 //   }
 // }
+
+function initializeSearch() {
+  const searchForm = document.querySelector(".search-form");
+  const searchInput = searchForm.querySelector('input[type="search"]');
+  const main = document.querySelector("main");
+
+  searchForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm) {
+      fetchCall(`product.php?search=${encodeURIComponent(searchTerm)}`, displaySearchResults);
+    }
+  });
+}
+
+function displaySearchResults(data) {
+  const main = document.querySelector("main");
+  // Clear existing content
+  main.innerHTML = "";
+  
+  // Create search results section
+  const searchSection = document.createElement("div");
+  searchSection.className = "search-results";
+  
+  const heading = document.createElement("h2");
+  heading.textContent = "Search Results";
+  searchSection.appendChild(heading);
+  
+  if (data.products && data.products.length > 0) {
+    populateCatalogue(data.products, searchSection);
+  } else {
+    const noResults = document.createElement("p");
+    noResults.textContent = "No products found.";
+    noResults.style.textAlign = "center";
+    noResults.style.padding = "2rem";
+    searchSection.appendChild(noResults);
+  }
+  
+  main.appendChild(searchSection);
+}

@@ -4,13 +4,16 @@ function checkout() {
   main.innerHTML = " "; // Clear the main content
   const formDiv = document.createElement("div");
   formDiv.className = "form-div";
-  const h2 = document.createElement("h2");
-  h2.textContent = "Delivery Address Form";
-  formDiv.appendChild(h2);
+  // const h2 = document.createElement("h2");
+  // h2.textContent = "Delivery Address Form";
+  // formDiv.appendChild(h2);
 
   const addressForm = document.createElement("form");
   addressForm.className = "address-form";
-
+  
+  const h2 = document.createElement("h2");
+  h2.textContent = "Delivery Address Form";
+  addressForm.appendChild(h2);
   const address = document.createElement("input");
   address.type = "text";
   address.name = "address";
@@ -53,7 +56,11 @@ function sendCheckoutRequest(e) {
   const formData = new FormData(this);
   fetchCall("checkout.php", responseSendCheckout, "POST", formData);
   function responseSendCheckout(data) {
-    // console.log(data);
-    if (data.url) window.location = data.url;
+    if (data.url) {
+      console.log("Payment ID:", data.payment_id); // For debugging
+      window.location = data.url;
+    } else {
+      console.error("Error: No checkout URL received");
+    }
   }
 }

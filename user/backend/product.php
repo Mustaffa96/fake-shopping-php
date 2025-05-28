@@ -21,3 +21,23 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['category'])) {
     $prep_stmt->close();
     exit();
 }
+
+// Handle search query
+if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['search'])) {
+    $stmt = "SELECT * FROM product WHERE status = 1 AND name LIKE ?";
+    $prep_stmt = $conn->prepare($stmt);
+    $search_term = "%" . $_GET['search'] . "%";
+    $prep_stmt->bind_param('s', $search_term);
+    $prep_stmt->execute();
+    if ($result = $prep_stmt->get_result()) {
+        $arr = array();
+        while ($rowArray = $result->fetch_assoc()) {
+            array_push($arr, $rowArray);
+        }
+        echo json_encode(['products' => $arr]);
+    } else {
+        echo json_encode(['error' => 'Something went wrong.']);
+    }
+    $prep_stmt->close();
+    exit();
+}

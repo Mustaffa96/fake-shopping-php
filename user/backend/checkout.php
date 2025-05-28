@@ -1,7 +1,9 @@
 <?php
 
 require './include/logged_user_cart.php';
+require './include/security_headers.php';
 require '../../vendor/autoload.php';
+
 \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
 header('Content-Type: application/json');
@@ -28,7 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $total_price = $cart['total'];
     unset($cart['total']);
-    $stripe_data = initiateCheckout($total_price);
+    try {
+        $stripe_data = initiateCheckout($total_price);
+    } catch (\Stripe\Exception\ApiErrorException $e) {
+        http_response_code(500);
+        echo json_encode(['error' => $e->getMessage()]);
+        exit();
+    }
     addToOrderTable();
     clearCart();
     echo json_encode([
@@ -39,27 +47,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 function initiateCheckout($price)
 {
-    $YOUR_DOMAIN = 'http://127.0.0.1:5500/user/frontend/';
-    $checkout_session = \Stripe\Checkout\Session::create([
-        'line_items' => [[
-            // 'price'=> '{{PRICE_ID}}', // Replace with your actual price ID
-            'price_data' => [
-                'currency' => 'myr',
-                'product_data' => [
-                    'name' => 'Customer Shopping Bill',
+    global $YOUR_DOMAIN;
+    try {
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'myr',
+                    'product_data' => [
+                        'name' => 'Customer Shopping Bill',
+                    ],
+                    'unit_amount' => (int)($price * 100), // Convert to cents and ensure integer
                 ],
-                'unit_amount' => $price * 100, // Convert to cents
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $YOUR_DOMAIN . 'success.html',
+            'cancel_url' => $YOUR_DOMAIN . 'cancel.html',
+            'payment_intent_data' => [
+                'capture_method' => 'automatic',
             ],
-            'quantity' => 1,
-        ]],
-        'mode' => 'payment',
-        'success_url' => $YOUR_DOMAIN . 'success.html',
-        'cancel_url' => $YOUR_DOMAIN . 'cancel.html',
-    ]);
-    return [
-        'url' => $checkout_session->url,
-        'payment_id' => $checkout_session->payment_intent
-    ];
+            'locale' => 'en', // Explicitly set locale to English
+        ]);
+        
+        return [
+            'url' => $checkout_session->url,
+            'payment_id' => $checkout_session->payment_intent
+        ];
+    } catch (\Stripe\Exception\ApiErrorException $e) {
+        http_response_code(500);
+        echo json_encode(['error' => $e->getMessage()]);
+        exit();
+    }
 }
 
 function addToOrderTable()
@@ -75,7 +93,7 @@ function addToOrderTable()
     $postcode = $_POST['postcode'];
 
     $user_id = $logged_user_id == NULL ? 'NULL' : $logged_user_id;
-    $payment_id = $stripe_data['payment_id'];
+    $payment_id = $stripe_data['payment_id'] ?? null;
     error_log("Payment Intent ID: " . $payment_id);
     $stmt = "insert into fakeshop.order (user_id, name, address, city, post_code, total_price, payment_id, order_status) values($user_id, '$name', '$address', '$city', '$postcode', $total_price, '$payment_id', 'pending')";
     $conn->query($stmt);

@@ -6,13 +6,15 @@ function registerNewUser() {
     console.log(data);
     const formDiv = document.createElement("div");
     formDiv.className = "formDiv";
-    const h2 = document.createElement("h2");
-    h2.textContent = "User Registration";
-    formDiv.appendChild(h2);
+    // const h2 = document.createElement("h2");
+    // h2.textContent = "User Registration";
+    // formDiv.appendChild(h2);
 
     const form = document.createElement("form");
     form.className = "register-form";
-
+    const h2 = document.createElement("h2");
+    h2.textContent = "User Registration";
+    form.appendChild(h2);
     const columns = data.columns;
     columns.forEach((column) => {
       const input = document.createElement("input");
@@ -48,13 +50,12 @@ function registerFormSubmit(e) {
   fetchCall("register.php", responseRegisterFormSubmit, "POST", formData);
   function responseRegisterFormSubmit(data) {
     console.log(data);
-    if(data.registration){
-        alert('Registration successful!')
-        removeOverlay();
-    }
-    else{
-        alert(data.error);
-        form.reset();
+    if (data.registration) {
+      alert("Registration successful!");
+      removeOverlay();
+    } else {
+      alert(data.error);
+      form.reset();
     }
   }
 }

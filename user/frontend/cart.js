@@ -53,6 +53,12 @@ function showCart() {
 
   setActiveCategory(null);
   
+  // Clear any existing modals or overlays
+  const existingModal = document.querySelector(".modal-container");
+  const existingOverlay = document.querySelector(".overlay");
+  if (existingModal) existingModal.remove();
+  if (existingOverlay) existingOverlay.remove();
+  
   main.innerHTML = "";
   const container = document.createElement("div");
   container.className = "cart-container";
