@@ -1,3 +1,14 @@
+/**
+ * login.js - Frontend Authentication Module
+ * 
+ * This module handles user authentication functionality including:
+ * - Login form creation and display
+ * - User login/logout operations
+ * - Login status checking
+ * - UI updates based on authentication state
+ * - Integration with backend login.php for auth requests
+ */
+
 const login = document.querySelector(".login");
 const register = document.querySelector(".register");
 const logout = document.querySelector(".logout");
@@ -28,6 +39,7 @@ function userLogin(e) {
   const submit = document.createElement("input");
   submit.type = "submit";
   submit.name = "Login";
+  submit.value = "Sign In";
   submit.addEventListener("click", userLoginRequest);
   loginForm.appendChild(userName);
   loginForm.appendChild(password);
@@ -43,9 +55,17 @@ function userLoginRequest(e) {
   fetchCall("login.php", userLoginResponse, "POST", formData);
 
   function userLoginResponse(data) {
-    console.log(data);
-    data.user && displayLoggedUser(data.user);
-    data.user && updateCart();
+    if (data.user) {
+      displayLoggedUser(data.user);
+      updateCart();
+      // Add a small delay before reloading to ensure session is set
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    } else if (data.error) {
+      // Show error message to user
+      alert(data.error);
+    }
   }
 }
 

@@ -1,4 +1,13 @@
+/**
+ * Menu handling script for the fake shopping website
+ * Manages category navigation and product display
+ */
+
 document.addEventListener("DOMContentLoaded", requestCategories);
+
+/**
+ * Fetches product categories from the server and creates navigation menu
+ */
 function requestCategories() {
   fetchCall("menu.php", ResponseCategories);
   function ResponseCategories(data) {
@@ -17,6 +26,10 @@ function requestCategories() {
   }
 }
 
+/**
+ * Handles category selection and fetches products for the selected category
+ * Updates the main content area with products from the selected category
+ */
 function getCategoryProducts() {
   const cat = this;
   const main = document.querySelector("main");
@@ -30,6 +43,11 @@ function getCategoryProducts() {
   }
 }
 
+/**
+ * Updates the visual state of category navigation
+ * Highlights the selected category with primary color and removes highlight from others
+ * @param {string} cat - The selected category name
+ */
 function setActiveCategory(cat) {
   const categoryList = document.querySelectorAll(".navigation li");
   const root = document.querySelector(":root");

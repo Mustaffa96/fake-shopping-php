@@ -1,5 +1,11 @@
 <?php
 
+// User Authentication and Session Management
+
+// This script handles user login, session checks, and logout functionality.
+// It interacts with the MySQL database to validate user credentials and
+// manages user sessions for the fake-shopping-php application.
+
 require './include/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -1,3 +1,14 @@
+/**
+ * Checkout functionality for the fake shopping PHP application
+ * Handles the delivery address form creation and submission
+ * Features:
+ * - Dynamically creates address form with fields for address, city, and postcode
+ * - Checks user login status (guest vs logged-in user)
+ * - For guest users, adds an additional name field
+ * - Processes form submission and redirects to Stripe checkout
+ * - Uses fetchCall utility for API communication
+ */
+
 function checkout() {
   // console.log("Checkout btn clicked.");
   const main = document.querySelector("main");

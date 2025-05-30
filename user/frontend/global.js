@@ -1,3 +1,19 @@
+// 
+//  global.js - Core frontend functionality for My Fake Shopping Online
+//  
+//  This file handles all main frontend functionalities including:
+//  - Event listeners for page initialization
+//  - Product catalog display and management
+//  - Modal windows and overlay system
+//  - Shopping cart interactions
+//  - Product search functionality
+//  - API communication with backend services
+//  
+//  The file uses vanilla JavaScript and communicates with PHP backend
+//  through fetch API calls to handle product display, search, and cart
+//  operations.
+//  
+
 document.addEventListener("DOMContentLoaded", requestCategories);
 document.addEventListener("DOMContentLoaded", requestBanners);
 document.addEventListener("DOMContentLoaded", requestFeatured);

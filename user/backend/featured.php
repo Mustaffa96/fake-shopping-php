@@ -1,4 +1,15 @@
 <?php
+
+// Featured Products API Endpoint
+
+// This endpoint retrieves 3 random active products from the database
+// to be displayed as featured items on the frontend.
+
+// Method: GET
+// Response Format: JSON
+// - Success: {featured: Array<Product>}
+// - Error: {error: string}
+
 require './include/db.php';
 // header('Access-Control-Allow-Origin: *');
 

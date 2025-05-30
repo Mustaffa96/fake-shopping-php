@@ -1,4 +1,22 @@
+
+
 <?php
+
+// 
+// Product API Endpoint
+// 
+// This file handles product-related API requests:
+// 1. Category-based product filtering: GET /?category={category_name}
+//    Returns all active products in the specified category
+// 
+// 2. Product search: GET /?search={search_term}
+//    Returns all active products where name matches the search term
+// 
+// All responses are in JSON format with either:
+// - Success: {"products": [...]}
+// - Error: {"error": "message"}
+//  
+
 require './include/db.php';
 // header('Access-Control-Allow-Origin: *');
 

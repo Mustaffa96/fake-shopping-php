@@ -1,3 +1,27 @@
+/*
+ * Main stylesheet for Fake Shopping PHP E-commerce Platform
+ * 
+ * This stylesheet contains all the styling for the e-commerce frontend including:
+ * - Custom variables and root styling
+ * - Responsive header with search, login, and cart functionality
+ * - Product catalogue and card layouts
+ * - Modal overlays for product details
+ * - Banner section with Swiper integration
+ * - Footer with social media links and general info
+ * - Form styling for login, registration and checkout
+ * - Shopping cart interface
+ * - Welcome modal
+ * - Responsive design breakpoints for mobile and tablet views
+ * 
+ * Theme colors:
+ * Primary: #ee4d2d (Orange-red)
+ * Secondary: #fe6233 (Light orange)
+ * Tertiary: #eda500 (Yellow)
+ * 
+ * Author: Mustaffa96
+ * Last updated: 2025-05-30
+ */
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,300;1,75..100,300&display=swap");
 :root {
   --primary-color: #ee4d2d;

@@ -1,4 +1,25 @@
+
+
 <?php
+
+
+// Checkout Processing Script
+
+// This script handles the e-commerce checkout process using Stripe payment gateway.
+// Key functionalities:
+// - Processes both guest and logged-in user checkouts
+// - Creates Stripe checkout sessions with MYR currency
+// - Stores order details in the database (fakeshop schema)
+// - Handles shipping information (name, address, city, postcode)
+// - Manages cart clearing after successful order placement
+// - Uses Stripe test API keys for payment processing
+
+// Flow:
+// 1. Validates user session and cart data
+// 2. Initiates Stripe checkout session
+// 3. Creates order record in database
+// 4. Clears user's cart after successful order
+  
 
 require './include/logged_user_cart.php';
 require './include/security_headers.php';

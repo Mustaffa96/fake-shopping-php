@@ -1,4 +1,23 @@
 <?php
+
+// 
+// User Registration Handler
+// 
+// This script handles both GET and POST requests for user registration:
+// - GET: Returns the user table structure (excluding the first column)
+// - POST: Processes new user registration with data validation
+// 
+// Features:
+// - Prevents duplicate usernames
+// - Basic error handling
+// - Prepared statements for SQL injection prevention
+// - Returns JSON responses
+// 
+// @return JSON Response containing either:
+//         - Table structure (GET)
+//         - Registration success/failure status (POST)
+//   
+
 require './include/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {

@@ -1,3 +1,15 @@
+/**
+ * Banner Carousel Management
+ * 
+ * This file handles the dynamic loading and display of banner images in a carousel/slider.
+ * Features:
+ * - Fetches banner data from banner.php
+ * - Creates responsive banner slides with overlay and content
+ * - Implements Swiper.js for smooth carousel functionality
+ * - Includes autoplay, pagination, and navigation controls
+ * - Supports text overlay with title, description, and CTA button
+ */
+
 document.addEventListener("DOMContentLoaded", requestBanners);
 
 function requestBanners() {

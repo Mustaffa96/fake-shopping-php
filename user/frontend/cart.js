@@ -1,3 +1,19 @@
+/**
+ * Cart management functionality for the fake-shopping-php e-commerce system
+ * 
+ * Key features:
+ * - Manages shopping cart UI and interactions
+ * - Handles cart icon display with item count
+ * - Supports add/update/delete cart items
+ * - Shows product availability status
+ * - Calculates total order value
+ * - Integrates with cart.php backend
+ * - Provides checkout flow integration
+ * 
+ * Currency: MYR (Malaysian Ringgit)
+ * Max quantity per item: 10 or available stock
+ */
+
 const cartIcon = document.querySelector(".cart");
 const localCart = {
   cart: null,

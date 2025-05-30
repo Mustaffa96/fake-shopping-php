@@ -1,5 +1,16 @@
+/**
+ * Register.js - User Registration Module
+ * Handles the frontend functionality for new user registration in the fake-shopping system.
+ * Creates and manages the registration form UI dynamically based on database columns.
+ * Communicates with register.php for form submission and user creation.
+ */
+
 register.addEventListener("click", registerNewUser);
 
+/**
+ * Creates and displays the registration form UI
+ * Fetches user table structure from backend to dynamically generate form fields
+ */
 function registerNewUser() {
   fetchCall("register.php", responseUserTableInfo);
   function responseUserTableInfo(data) {
@@ -36,6 +47,7 @@ function registerNewUser() {
     const submit = document.createElement("input");
     submit.type = "submit";
     submit.name = "register";
+    submit.value = "Sign Up";
     submit.addEventListener("click", registerFormSubmit);
     form.appendChild(submit);
     formDiv.appendChild(form);
@@ -43,6 +55,11 @@ function registerNewUser() {
   }
 }
 
+/**
+ * Handles the registration form submission
+ * Sends form data to backend and processes the registration response
+ * @param {Event} e - The form submission event
+ */
 function registerFormSubmit(e) {
   e.preventDefault();
   const form = document.querySelector(".register-form");

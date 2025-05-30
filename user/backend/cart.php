@@ -1,5 +1,17 @@
 <?php
 
+// Cart Management API Handler
+ 
+//  This file handles all cart-related operations for both logged-in and guest users.
+//  Supported HTTP methods:
+//  - GET: Retrieves the current cart contents
+//  - POST: Adds a new product to the cart
+//  - PATCH: Updates product quantities in the cart
+//  - DELETE: Removes specific products from the cart
+ 
+//  The implementation is split between logged users (stored in database) and 
+//  guest users (stored in session), with respective logic in separate include files.
+
 require './include/logged_user_cart.php';
 require './include/guest_user_cart.php';
 

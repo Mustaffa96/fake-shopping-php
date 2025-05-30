@@ -1,4 +1,16 @@
 <?php
+
+// Inventory Stock Management API
+
+// This file handles inventory stock level queries for products in the fake-shopping system.
+// It provides an endpoint to retrieve the current stock level for a specific product by its ID.
+
+// Endpoint: GET /?id={product_id}
+// Response: JSON containing either the stock level or an error message
+
+// @return JSON { "stock": number } | { "error": string }
+
+
 require './include/db.php';
 // header('Access-Control-Allow-Origin: *');
 

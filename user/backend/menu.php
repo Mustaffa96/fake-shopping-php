@@ -1,4 +1,15 @@
 <?php
+
+//  
+// Menu Categories API Endpoint
+// 
+// This endpoint retrieves all active categories from the database.
+// Method: GET
+// Response Format: JSON
+// Success Response: {categories: string[]} - Array of category names
+// Error Response: {error: string} - Error message if request fails
+//   
+
 error_reporting(0);
 
 try {

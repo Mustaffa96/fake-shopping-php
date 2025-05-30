@@ -1,4 +1,17 @@
 <?php
+
+// 
+// New Arrivals API Endpoint
+// 
+// This endpoint retrieves the 3 most recently added active products from the database.
+// Used to display new arrivals section on the frontend.
+// 
+// Method: GET
+// Response: JSON
+//   - Success: {newArrivals: Array<Product>}
+//   - Error: {error: string}
+//   
+
 require './include/db.php';
 // header('Access-Control-Allow-Origin: *');
 
