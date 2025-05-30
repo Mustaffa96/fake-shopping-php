@@ -47,11 +47,13 @@ user/
 ## Security Features
 - Secure user authentication
 - Protected API endpoints
+
+
 - Security headers implementation
 - Safe database operations
 
 ## Demo
-https://user-images.githubusercontent.com/49057200/fake-shopping-php/e1c8044b6f8f8eddd6d20af1abba4ff9627c104b/user/demo/demo.mp4
+https://github.com/user-attachments/assets/8b8c1856-2f73-4a49-bfd3-8beaeef55aca
 
 ## Contributing
 Feel free to fork the repository and submit pull requests for any improvements.
