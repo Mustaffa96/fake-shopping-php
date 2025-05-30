@@ -51,7 +51,7 @@ user/
 - Safe database operations
 
 ## Demo
-https://github.com/Mustaffa96/fake-shopping-php/raw/main/user/demo/demo.mp4
+![Demo Video](user/demo/demo.mp4)
 
 ## Contributing
 Feel free to fork the repository and submit pull requests for any improvements.
